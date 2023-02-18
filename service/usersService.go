@@ -28,7 +28,7 @@ func CreatePerson(w http.ResponseWriter, r *http.Request) {
 
 func GetPersonByID(w http.ResponseWriter, r *http.Request) {
 	personId := mux.Vars(r)["id"]
-	if checkIfPersonExists(personId) == false {
+	if !checkIfPersonExists(personId) {
 		json.NewEncoder(w).Encode("Person Not Found!")
 		return
 	}
@@ -48,7 +48,7 @@ func GetAllPerson(w http.ResponseWriter, r *http.Request) {
 
 func UpdatePersonByID(w http.ResponseWriter, r *http.Request) {
 	personId := mux.Vars(r)["id"]
-	if checkIfPersonExists(personId) == false {
+	if !checkIfPersonExists(personId) {
 		json.NewEncoder(w).Encode("Person Not Found!")
 		return
 	}
@@ -63,7 +63,7 @@ func UpdatePersonByID(w http.ResponseWriter, r *http.Request) {
 func DeletPersonByID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	personId := mux.Vars(r)["id"]
-	if checkIfPersonExists(personId) == false {
+	if !checkIfPersonExists(personId) {
 		w.WriteHeader(http.StatusNotFound)
 		json.NewEncoder(w).Encode("Person Not Found!")
 		return
