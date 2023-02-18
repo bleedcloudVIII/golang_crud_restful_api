@@ -29,7 +29,7 @@ func CreateProduct(w http.ResponseWriter, r *http.Request) {
 func GetProductByID(w http.ResponseWriter, r *http.Request) {
 	productId := mux.Vars(r)["id"]
 	if checkIfProductExists(productId) == false {
-		json.NewEncoder(w).Encode("Product Not Found!")
+		json.NewEncoder(w).Encode("Product not found!")
 		return
 	}
 	var product entities.Product
@@ -49,7 +49,7 @@ func GetAllProduct(w http.ResponseWriter, r *http.Request) {
 func UpdateProductByID(w http.ResponseWriter, r *http.Request) {
 	productId := mux.Vars(r)["id"]
 	if checkIfProductExists(productId) == false {
-		json.NewEncoder(w).Encode("Product Not Found!")
+		json.NewEncoder(w).Encode("Product not found!")
 		return
 	}
 	var product entities.Product
@@ -65,7 +65,7 @@ func DeletProductByID(w http.ResponseWriter, r *http.Request) {
 	productId := mux.Vars(r)["id"]
 	if checkIfProductExists(productId) == false {
 		w.WriteHeader(http.StatusNotFound)
-		json.NewEncoder(w).Encode("Product Not Found!")
+		json.NewEncoder(w).Encode("Product not found!")
 		return
 	}
 	var product entities.Product
