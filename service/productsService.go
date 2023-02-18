@@ -13,10 +13,6 @@ func checkIfProductExists(productId string) bool {
 	var product entities.Product
 	database.Connector.First(&product, productId)
 	return product.ID != 0
-	// if product.ID == 0 {
-	// 	return false
-	// }
-	// return true
 }
 
 func CreateProduct(w http.ResponseWriter, r *http.Request) {
