@@ -20,15 +20,22 @@ func checkIfProductExists(productId string) bool {
 
 func CreateProduct(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+<<<<<<< HEAD
 	var NewProduct entities.Product
 	json.NewDecoder(r.Body).Decode(&NewProduct)
 	database.Connector.Create(&NewProduct)
 	json.NewEncoder(w).Encode(NewProduct)
+=======
+	var NewNewProduct entities.Product
+	json.NewDecoder(r.Body).Decode(&NewNewProduct)
+	database.Connector.Create(&NewNewProduct)
+	json.NewEncoder(w).Encode(NewNewProduct)
+>>>>>>> test_two
 }
 
 func GetProductByID(w http.ResponseWriter, r *http.Request) {
 	productId := mux.Vars(r)["id"]
-	if checkIfProductExists(productId) == false {
+	if !checkIfProductExists(productId) {
 		json.NewEncoder(w).Encode("Product not found!")
 		return
 	}
@@ -48,7 +55,7 @@ func GetAllProduct(w http.ResponseWriter, r *http.Request) {
 
 func UpdateProductByID(w http.ResponseWriter, r *http.Request) {
 	productId := mux.Vars(r)["id"]
-	if checkIfProductExists(productId) == false {
+	if !checkIfProductExists(productId) {
 		json.NewEncoder(w).Encode("Product not found!")
 		return
 	}
@@ -63,7 +70,7 @@ func UpdateProductByID(w http.ResponseWriter, r *http.Request) {
 func DeletProductByID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	productId := mux.Vars(r)["id"]
-	if checkIfProductExists(productId) == false {
+	if !checkIfProductExists(productId) {
 		w.WriteHeader(http.StatusNotFound)
 		json.NewEncoder(w).Encode("Product not found!")
 		return
