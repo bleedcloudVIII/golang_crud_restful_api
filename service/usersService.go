@@ -12,10 +12,7 @@ import (
 func checkIfPersonExists(personId string) bool {
 	var person entities.Person
 	database.Connector.First(&person, personId)
-	if person.ID == 0 {
-		return false
-	}
-	return true
+	return person.ID != 0
 }
 
 func CreatePerson(w http.ResponseWriter, r *http.Request) {

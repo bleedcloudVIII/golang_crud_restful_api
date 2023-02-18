@@ -12,25 +12,19 @@ import (
 func checkIfProductExists(productId string) bool {
 	var product entities.Product
 	database.Connector.First(&product, productId)
-	if product.ID == 0 {
-		return false
-	}
-	return true
+	return product.ID != 0
+	// if product.ID == 0 {
+	// 	return false
+	// }
+	// return true
 }
 
 func CreateProduct(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-<<<<<<< HEAD
 	var NewProduct entities.Product
 	json.NewDecoder(r.Body).Decode(&NewProduct)
 	database.Connector.Create(&NewProduct)
 	json.NewEncoder(w).Encode(NewProduct)
-=======
-	var NewNewProduct entities.Product
-	json.NewDecoder(r.Body).Decode(&NewNewProduct)
-	database.Connector.Create(&NewNewProduct)
-	json.NewEncoder(w).Encode(NewNewProduct)
->>>>>>> test_two
 }
 
 func GetProductByID(w http.ResponseWriter, r *http.Request) {
