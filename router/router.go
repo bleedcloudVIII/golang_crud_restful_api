@@ -14,8 +14,8 @@ func StartRouter() {
 	router.HandleFunc("/users/", service.CreatePerson).Methods("POST")
 	router.HandleFunc("/users/{id}", service.GetPersonByID).Methods("GET")
 	router.HandleFunc("/users/", service.GetAllPerson).Methods("GET")
-	router.HandleFunc("/users/{id}/", service.UpdatePersonByID).Methods("PUT")
-	router.HandleFunc("/users/{id}/", service.DeletPersonByID).Methods("DELETE")
+	router.HandleFunc("/users/{id}", service.UpdatePersonByID).Methods("PUT")
+	router.HandleFunc("/users/{id}", service.DeletPersonByID).Methods("DELETE")
 	http.Handle("/", router)
 	log.Fatal(http.ListenAndServe(":8090", router))
 
