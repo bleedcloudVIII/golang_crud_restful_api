@@ -33,7 +33,7 @@ func Connect(connectionString string) error {
 }
 
 func Migrate() {
-	Connector.AutoMigrate(entities.Person{})
 	Connector.AutoMigrate(entities.Product{})
+	Connector.AutoMigrate(entities.Person{})
 	log.Println("Database Migration Completed...")
 }
