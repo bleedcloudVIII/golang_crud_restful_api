@@ -39,11 +39,11 @@ func GetProductByID(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetAllProduct(w http.ResponseWriter, r *http.Request) {
-	var Product []entities.Product
-	database.Connector.Find(&Product)
+	var product []entities.Product
+	database.Connector.Find(&product)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(Product)
+	json.NewEncoder(w).Encode(product)
 }
 
 func UpdateProductByID(w http.ResponseWriter, r *http.Request) {
