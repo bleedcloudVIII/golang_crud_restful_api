@@ -1,0 +1,6 @@
+language: go
+
+go:
+- master
+
+script: Test-Path -Path './test_travis.txt'
