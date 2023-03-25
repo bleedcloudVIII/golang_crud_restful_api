@@ -7,6 +7,10 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
+/*
+	\brief function main - start app
+*/
+
 func main() {
 	config :=
 		database.Config{

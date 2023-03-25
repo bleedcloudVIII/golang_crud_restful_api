@@ -9,11 +9,19 @@ import (
 	"github.com/gorilla/mux"
 )
 
+/*
+	\brief checkIfPersonExists - function which return exist person or not
+*/
+
 func checkIfPersonExists(personId string) bool {
 	var person entities.Person
 	database.Connector.First(&person, personId)
 	return person.ID != 0
 }
+
+/*
+	\brief CreatePerson - function for router which create a new person
+*/
 
 func CreatePerson(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -22,6 +30,10 @@ func CreatePerson(w http.ResponseWriter, r *http.Request) {
 	database.Connector.Create(&person)
 	json.NewEncoder(w).Encode(person)
 }
+
+/*
+	\brief GetPersonByID - function for router which return person by id
+*/
 
 func GetPersonByID(w http.ResponseWriter, r *http.Request) {
 	personId := mux.Vars(r)["id"]
@@ -35,6 +47,10 @@ func GetPersonByID(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(person)
 }
 
+/*
+	\brief GetAllPerson - function for router which return all persons
+*/
+
 func GetAllPerson(w http.ResponseWriter, r *http.Request) {
 	var persons []entities.Person
 	database.Connector.Find(&persons)
@@ -42,6 +58,10 @@ func GetAllPerson(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(persons)
 }
+
+/*
+	\brief UpdatePersonByID - function for router which update person
+*/
 
 func UpdatePersonByID(w http.ResponseWriter, r *http.Request) {
 	personId := mux.Vars(r)["id"]
@@ -56,6 +76,10 @@ func UpdatePersonByID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(person)
 }
+
+/*
+	\brief DeletePersonByID - function for router which delete person by id
+*/
 
 func DeletPersonByID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")

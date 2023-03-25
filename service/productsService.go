@@ -9,11 +9,19 @@ import (
 	"github.com/gorilla/mux"
 )
 
+/*
+	\brief checkIfProductsExists - check exists product or not
+*/
+
 func checkIfProductExists(productId string) bool {
 	var product entities.Product
 	database.Connector.First(&product, productId)
 	return product.ID != 0
 }
+
+/*
+	\brief CreateProducts - function for router which create a new product
+*/
 
 func CreateProduct(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
@@ -22,6 +30,10 @@ func CreateProduct(w http.ResponseWriter, r *http.Request) {
 	database.Connector.Create(&NewProduct)
 	json.NewEncoder(w).Encode(NewProduct)
 }
+
+/*
+	\brief GetProductById - function for router which return product by id
+*/
 
 func GetProductByID(w http.ResponseWriter, r *http.Request) {
 	productId := mux.Vars(r)["id"]
@@ -35,6 +47,10 @@ func GetProductByID(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(product)
 }
 
+/*
+	\brief GetAllProduct - function for router which return all products
+*/
+
 func GetAllProduct(w http.ResponseWriter, r *http.Request) {
 	var product []entities.Product
 	database.Connector.Find(&product)
@@ -42,6 +58,10 @@ func GetAllProduct(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(product)
 }
+
+/*
+	\brief CreateProducts - function for router which update a product
+*/
 
 func UpdateProductByID(w http.ResponseWriter, r *http.Request) {
 	productId := mux.Vars(r)["id"]
@@ -56,6 +76,10 @@ func UpdateProductByID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(product)
 }
+
+/*
+	\brief DeleteProductByID - function for router which delete product by id
+*/
 
 func DeletProductByID(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")

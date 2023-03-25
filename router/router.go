@@ -8,6 +8,10 @@ import (
 	"github.com/gorilla/mux"
 )
 
+/*
+	\brief function StartRouter - starting router for all services
+*/
+
 func StartRouter() {
 	log.Println("Starting the HTTP server on port 8090")
 	router := mux.NewRouter()
